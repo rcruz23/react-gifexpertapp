@@ -6,21 +6,16 @@ import { useFetchGifs } from "../hooks/useFetchGifs"
 
 
 export const GifGrid = ({category}) => {
-    // const [images, setImages] = useState([]);
-
-
-
-
-    const {data} = useFetchGifs(category);
-    
+    const {data:images, loading} = useFetchGifs(category);
 
     return (
         <>
             <h3>{ category }</h3>
+            { loading && <p>Loading</p>}
             <div className="card-grid">
                 <ol>
                     {
-                        data.map(img => (
+                        images.map(img => (
                             <GifGridItem key={img.id} {...img }/>
                         ))
                     }
